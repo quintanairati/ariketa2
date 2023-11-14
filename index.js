@@ -22,8 +22,12 @@ const sess = {
 app.use(session(sess))
 
 //username and password
+/*
 const myusername = 'user1'
 const mypassword = 'mypassword'
+*/
+
+const erabiltzaileak = JSON.parse(fs.readFileSystem('databasea.json', 'utf8'));
 
 app.get('/protected',(req,res) => {
 
