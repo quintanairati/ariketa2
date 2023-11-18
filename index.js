@@ -2,6 +2,8 @@ const session = require('express-session')
 const express = require("express");
 const app = express()
 
+const datubase = require('./datubase.json');
+
 const PORT = 4000;
 
 // use static files
@@ -27,9 +29,7 @@ const myusername = 'user1'
 const mypassword = 'mypassword'
 */
 
-const erabiltzaileak = JSON.parse(fs.readFileSystem('databasea.json', 'utf8'));
-
-app.get('/protected',(req,res) => {
+app.get('/',(req,res) => {
 
     if(req.session.userid){
         res.send("Welcome User <a href=\'/logout'>click to logout</a>");
@@ -38,6 +38,7 @@ app.get('/protected',(req,res) => {
 });
 
 app.post('/user',(req,res) => {
+    /*
     if(req.body.username == myusername && req.body.password == mypassword){
 
         req.session.userid=req.body.username;
@@ -47,6 +48,20 @@ app.post('/user',(req,res) => {
     else{
         res.send('Invalid username or password');
     }
+    */
+    const { username, password } = req.body;
+
+    const user = datubase.find(
+      (user) => user.username === username && user.password === password
+    );
+  
+    if (user) {
+      req.session.userid = username;
+      console.log(req.session);
+      res.redirect('/');
+    } else {
+      res.send('Invalid username or password');
+    }
 })
 
 app.get('/logout',(req,res) => {
@@ -54,7 +69,7 @@ app.get('/logout',(req,res) => {
     res.redirect('/');
 });
 
-app.get("/", (req, res) => {
+app.get("/hello", (req, res) => {
     res.send("Hello World");
 })
 
