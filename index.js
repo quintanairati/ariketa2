@@ -33,8 +33,9 @@ app.get('/',(req,res) => {
 
     if(req.session.userid){
         res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-    }else
-        res.redirect('form.html')
+    }else {
+        res.redirect('form.html');
+    }
 });
 
 app.post('/user',(req,res) => {
@@ -60,7 +61,8 @@ app.post('/user',(req,res) => {
       console.log(req.session);
       res.redirect('/');
     } else {
-      res.send('Invalid username or password');
+        res.redirect('/?error=true');
+      //res.send('Invalid username or password');
     }
 })
 
@@ -68,10 +70,6 @@ app.get('/logout',(req,res) => {
     req.session.destroy();
     res.redirect('/');
 });
-
-app.get("/hello", (req, res) => {
-    res.send("Hello World");
-})
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);})

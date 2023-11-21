@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-<form action="/user" method="post">
+<form action="/user" method="post" id="document">
     <h2>Login</h2>
     <div class="input-field">
         <input type="text" name="username" id="username" placeholder="Enter Username">
@@ -13,5 +13,14 @@
     </div>
     <input type="submit" value="LogIn">
 </form>
+    <div style="color: red;" id="errorea"> Kredentzialak ez dira zuzenak </div>
+    <script>
+
+        if(error){
+            document.getElementById("errorea").style.visibility = "visible";
+        } else {
+            document.getElementById("errorea").style.visibility = "hidden";
+        }
+    </script>
 </body>
 </html>
