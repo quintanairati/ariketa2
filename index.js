@@ -61,7 +61,7 @@ app.post('/user',(req,res) => {
       console.log(req.session);
       res.redirect('/');
     } else {
-        res.redirect('/?error=true');
+        res.redirect('form.html?error=true');
       //res.send('Invalid username or password');
     }
 })

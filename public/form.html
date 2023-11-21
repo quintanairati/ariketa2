@@ -13,13 +13,12 @@
     </div>
     <input type="submit" value="LogIn">
 </form>
-    <div style="color: red;" id="errorea"> Kredentzialak ez dira zuzenak </div>
+    <div style="color: red;" id="errorea"></div>
     <script>
-
+        const url = new URLSearchParams(window.location.search);
+        const error = url.get('error');
         if(error){
-            document.getElementById("errorea").style.visibility = "visible";
-        } else {
-            document.getElementById("errorea").style.visibility = "hidden";
+            document.getElementById("errorea").textContent = "Kredentzialak ez dira zuzenak";
         }
     </script>
 </body>
