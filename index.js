@@ -1,6 +1,7 @@
 const session = require('express-session')
 const express = require("express");
-const app = express()
+const app = express();
+var logger = require('morgan');
 
 const datubase = require('./datubase.json');
 
@@ -19,7 +20,9 @@ app.set("views", "views");
 
 const sess = {
     secret: 'ausazko hitz multzoa',
-    cookie: {}
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
 }
 app.use(session(sess))
 
