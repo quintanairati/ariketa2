@@ -1,11 +1,13 @@
 const session = require('express-session')
 const express = require("express");
 const app = express();
+const morgan = require('morgan');
 
 const datubase = require('./datubase.json');
 
 const PORT = 4000;
 
+app.use(morgan('dev'));
 // use static files
 app.use(express.static("public"));
 
